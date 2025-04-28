@@ -6,14 +6,20 @@ class DiceController < ApplicationController
   end
   
   def flexible
-    @dice_rolls = Array.new
+    # 1) pull in the dynamic segments from params and convert to integers
+    @dice  = params.fetch("dice").to_i
+    @sides = params.fetch("sides").to_i
 
+    # 2) build up your rolls
+    @dice_rolls = []
     @dice.times do
-      new_rolls = rand(1..@sides)
-
+      new_roll = rand(1..@sides)
       @dice_rolls.push(new_roll)
     end
 
-    render({ :template => "dice_templates/flexible"})
+    render({ :template => "dice_templates/flexible" })
   end
 end
+
+
+
