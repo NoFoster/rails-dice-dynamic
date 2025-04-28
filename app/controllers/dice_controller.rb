@@ -13,13 +13,10 @@ class DiceController < ApplicationController
     # 2) build up your rolls
     @dice_rolls = []
     @dice.times do
-      new_roll = rand(1..@sides)
-      @dice_rolls.push(new_roll)
+      roll = rand(1..@sides)
+      @dice_rolls.push(roll)
     end
 
     render({ :template => "dice_templates/flexible" })
   end
 end
-
-
-
